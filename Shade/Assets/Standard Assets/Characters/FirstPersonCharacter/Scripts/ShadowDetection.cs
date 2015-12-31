@@ -5,11 +5,12 @@ using UnityEngine.UI;
 public class ShadowDetection : MonoBehaviour
 {
     public Image shadowDetector;
+    int lightRange;
     
 	// Use this for initialization
 	void Start()
     {
-	
+	    
 	}
 	
 	// Update is called once per frame
@@ -20,9 +21,9 @@ public class ShadowDetection : MonoBehaviour
 
     void OnTriggerEnter(Collider coll)
     {
-        if (coll.GetComponent<Collider>().name == "Head")
+        if (coll.tag == "Light")
         {
-            //shadowDetector.color.r -= 10;
+            Debug.Log("Hello!");
         }
     }
 
