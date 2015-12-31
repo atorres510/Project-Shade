@@ -103,16 +103,35 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
+            //T: my addition
+            ShadowVision();
 
+        }
+
+        //T: This function enables/disables the player's ability to look independent of movement. hold the C button to rotate camera independently
+        private void ShadowVision()
+        {
             if (Input.GetKeyDown(KeyCode.C))
             {
-                isCameraIndependent = true;
+                //ZeroTransformRotation(head);
+                Debug.Log("getkeydown");
             }
 
+            //assigns independence on input
+            if (Input.GetKey(KeyCode.C))
+            {
+                isCameraIndependent = true;
+                Debug.Log("getkey");
+            }
+            
             if (Input.GetKeyUp(KeyCode.C))
             {
                 isCameraIndependent = false;
+                ZeroTransformRotation(head);
+                Debug.Log("getkeyup");
+              
             }
+
 
             if (isCameraIndependent)
             {
@@ -122,13 +141,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
             else
             {
                 RotateView(transform);
+              
             }
-
-
         }
 
-        //T: This function enables/disables the player's ability to look independent of movement.
-     
+
+        //T: rotates the passed transforms to match rotation with another transform
+        private void ZeroTransformRotation(Transform t)
+        {
+
+            t.rotation = t.parent.rotation;
+
+        }
 
         private void PlayLandingSound()
         {
