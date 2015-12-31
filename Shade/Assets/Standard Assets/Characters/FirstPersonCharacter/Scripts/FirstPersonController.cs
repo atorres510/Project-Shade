@@ -43,8 +43,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        public Transform head;
+
         //My own additions.
         private bool inMenu = false;
+        private bool isCameraIndependent = false;
 
         // Use this for initialization
         private void Start()
@@ -65,7 +68,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-            RotateView();
+            //RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
             {
@@ -100,8 +103,32 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
+
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                isCameraIndependent = true;
+            }
+
+            if (Input.GetKeyUp(KeyCode.C))
+            {
+                isCameraIndependent = false;
+            }
+
+            if (isCameraIndependent)
+            {
+                RotateView(head);
+            }
+
+            else
+            {
+                RotateView(transform);
+            }
+
+
         }
 
+        //T: This function enables/disables the player's ability to look independent of movement.
+     
 
         private void PlayLandingSound()
         {
@@ -251,9 +278,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        private void RotateView()
+        private void RotateView(Transform bodyPart)
         {
-            m_MouseLook.LookRotation (transform, m_Camera.transform);
+            m_MouseLook.LookRotation (bodyPart, m_Camera.transform);
         }
 
 
