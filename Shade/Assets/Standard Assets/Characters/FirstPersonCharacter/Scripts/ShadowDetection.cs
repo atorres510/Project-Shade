@@ -32,15 +32,33 @@ public class ShadowDetection : MonoBehaviour
 
     IEnumerator ShadowCoroutine(Collider coll)
     {
-        yield return new WaitForSeconds(0.1f);
-        if(distanceToLight(coll) < coll.GetComponent<Light>().range)
+        yield return new WaitForSeconds(0.01f);
+        if(coll.GetComponent<Light>().type == LightType.Directional)
+        {
+            lightMeter = coll.GetComponent<Light>().intensity;
+            Vector3 direction = coll.transform.position - transform.position;
+            if (Physics.Raycast(transform.position, direction, distanceToLight(coll)))
+            {
+                lightMeter = 0;
+            }
+            shadowDetector.color = new Color(lightMeter, lightMeter, lightMeter, 1);
+            Debug.Log("Hello! Your light is at:" + lightMeter);
+            StartCoroutine("ShadowCoroutine", coll);
+        }
+
+        else if (distanceToLight(coll) < coll.GetComponent<Light>().range)
         {
             //Shadow Calculations
             lightRange = distanceToLight(coll);
             lightMeter = 1 - (lightRange / coll.GetComponent<Light>().range);
+            Vector3 direction = coll.transform.position - transform.position;
+            if (Physics.Raycast(transform.position, direction, distanceToLight(coll)))
+            {
+                lightMeter = 0;
+            }
             shadowDetector.color = new Color(lightMeter, lightMeter, lightMeter, 1);
             //Restart Coroutine if you are still in light.
-            Debug.Log("Hello! Your light is at:" + lightMeter);
+            //Debug.Log("Hello! Your light is at:" + lightMeter);
             StartCoroutine("ShadowCoroutine", coll);
         }
     }
