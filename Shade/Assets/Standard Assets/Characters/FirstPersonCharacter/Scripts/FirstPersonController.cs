@@ -114,6 +114,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (Input.GetKeyDown(KeyCode.C))
             {
                 //ZeroTransformRotation(head);
+               // head.rotation = Quaternion.identity;
                 Debug.Log("getkeydown");
             }
 
@@ -135,12 +136,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (isCameraIndependent)
             {
-                RotateView(head);
+                // RotateView(head);
+                m_MouseLook.LookRotation(m_Camera.transform);
             }
 
             else
             {
                 RotateView(transform);
+               // ZeroTransformRotation(head); //activate to be able to move body independent from head
               
             }
         }
@@ -151,7 +154,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
 
             t.rotation = t.parent.rotation;
-
         }
 
         private void PlayLandingSound()

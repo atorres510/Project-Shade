@@ -35,7 +35,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
 
-            if(clampVerticalRotation)
+            if (clampVerticalRotation)
                 m_CameraTargetRot = ClampRotationAroundXAxis (m_CameraTargetRot);
 
             if(smooth)
@@ -52,33 +52,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
-        //overlaoded
-        public void LookRotation(Transform camera)
-        {
-            float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
-            float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
-
-         
-            m_CameraTargetRot *= Quaternion.Euler(-xRot, yRot, 0f);
-
-            if (clampVerticalRotation)
-                m_CameraTargetRot = ClampRotationAroundXAxis(m_CameraTargetRot);
-
-            if (smooth)
-            {
-               
-                camera.localRotation = Quaternion.Slerp(camera.localRotation, m_CameraTargetRot,
-                    smoothTime * Time.deltaTime);
-            }
-            else
-            {
-            
-                camera.localRotation = m_CameraTargetRot;
-            }
-        }
-
-
-
+        
 
 
         Quaternion ClampRotationAroundXAxis(Quaternion q)
