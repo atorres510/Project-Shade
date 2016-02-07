@@ -52,7 +52,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
 
-            if(clampVerticalRotation)
+            if (clampVerticalRotation)
                 m_CameraTargetRot = ClampRotationAroundXAxis (m_CameraTargetRot);
 
             if(smooth)
@@ -69,6 +69,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
+<<<<<<< HEAD
         //overloaded
         public void LookRotation(Transform camera)
         {
@@ -96,6 +97,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 
 
+=======
+        
+>>>>>>> dc614167ae3993851b62e19cac056f84c410432d
 
 
         Quaternion ClampRotationAroundXAxis(Quaternion q)
