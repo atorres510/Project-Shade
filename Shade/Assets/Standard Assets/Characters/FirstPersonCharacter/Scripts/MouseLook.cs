@@ -26,11 +26,28 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_CameraTargetRot = camera.localRotation;
         }
 
+        public void UpdateMemberRotations(Quaternion character, Quaternion camera) {
+
+            m_CharacterTargetRot = character;
+            m_CameraTargetRot = camera;
+
+        }
+
+        public void UpdateMemberRotations(Quaternion character)
+        {
+
+            m_CharacterTargetRot = character;
+        
+
+        }
+
 
         public void LookRotation(Transform character, Transform camera)
         {
-            float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
-            float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
+           float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
+           float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
+
+           //Debug.Log("("+ yRot + ", " + xRot +")");
 
             m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
@@ -52,7 +69,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
-        //overlaoded
+        //overloaded
         public void LookRotation(Transform camera)
         {
             float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;

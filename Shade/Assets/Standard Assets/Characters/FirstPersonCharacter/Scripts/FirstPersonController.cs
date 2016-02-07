@@ -49,6 +49,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool inMenu = false;
         private bool isCameraIndependent = false;
 
+        private Quaternion oldCharacterRotation;
+        private Quaternion oldCameraRotation;
+
         // Use this for initialization
         private void Start()
         {
@@ -62,6 +65,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+
+       
         }
 
 
@@ -114,6 +119,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (Input.GetKeyDown(KeyCode.C))
             {
                 //ZeroTransformRotation(head);
+                StoreOldTransforms(gameObject, m_Camera);
+                m_MouseLook.UpdateMemberRotations(head.transform.localRotation);
                 Debug.Log("getkeydown");
             }
 
@@ -127,7 +134,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (Input.GetKeyUp(KeyCode.C))
             {
                 isCameraIndependent = false;
+                m_MouseLook.UpdateMemberRotations(oldCharacterRotation, oldCameraRotation);
                 ZeroTransformRotation(head);
+               
                 Debug.Log("getkeyup");
               
             }
@@ -150,7 +159,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void ZeroTransformRotation(Transform t)
         {
 
-            t.rotation = t.parent.rotation;
+            t.rotation = t.parent.localRotation;
+          
+        }
+
+    
+
+        private void StoreOldTransforms(GameObject character, Camera camera)
+        {
+
+            oldCharacterRotation = character.transform.localRotation;
+            oldCameraRotation = camera.transform.localRotation;
 
         }
 
