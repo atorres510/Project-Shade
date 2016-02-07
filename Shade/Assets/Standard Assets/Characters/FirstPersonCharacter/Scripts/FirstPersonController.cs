@@ -118,21 +118,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             if (Input.GetKeyDown(KeyCode.C))
             {
-                //ZeroTransformRotation(head);
-
-                StoreOldTransforms(gameObject, m_Camera);
+             
+                StoreOldRotations(gameObject, m_Camera);
                 m_MouseLook.UpdateMemberRotations(head.transform.localRotation);
 
-               // head.rotation = Quaternion.identity;
-
-                Debug.Log("getkeydown");
+                //Debug.Log("getkeydown");
             }
 
             //assigns independence on input
             if (Input.GetKey(KeyCode.C))
             {
                 isCameraIndependent = true;
-                Debug.Log("getkey");
+                //Debug.Log("getkey");
             }
             
             if (Input.GetKeyUp(KeyCode.C))
@@ -141,7 +138,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_MouseLook.UpdateMemberRotations(oldCharacterRotation, oldCameraRotation);
                 ZeroTransformRotation(head);
                
-                Debug.Log("getkeyup");
+               // Debug.Log("getkeyup");
               
             }
 
@@ -155,7 +152,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             else
             {
                 RotateView(transform);
-               // ZeroTransformRotation(head); //activate to be able to move body independent from head
               
             }
         }
@@ -165,14 +161,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void ZeroTransformRotation(Transform t)
         {
 
-
             t.rotation = t.parent.localRotation;
           
         }
 
     
-
-        private void StoreOldTransforms(GameObject character, Camera camera)
+        //stores the old rotations of the object and camera for use by UpdateMemberRotations
+        private void StoreOldRotations(GameObject character, Camera camera)
         {
 
             oldCharacterRotation = character.transform.localRotation;

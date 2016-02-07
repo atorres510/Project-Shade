@@ -26,19 +26,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_CameraTargetRot = camera.localRotation;
         }
 
+        //used before LookRotation.  acts like a starting point for the method.
         public void UpdateMemberRotations(Quaternion character, Quaternion camera) {
 
             m_CharacterTargetRot = character;
             m_CameraTargetRot = camera;
 
         }
-
+        //overload
         public void UpdateMemberRotations(Quaternion character)
         {
 
             m_CharacterTargetRot = character;
         
-
         }
 
 
@@ -70,7 +70,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        //overloaded
+        //overloaded <- not very helpful.
         public void LookRotation(Transform camera)
         {
             float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
