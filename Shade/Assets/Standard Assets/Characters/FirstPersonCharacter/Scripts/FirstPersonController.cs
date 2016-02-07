@@ -119,12 +119,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (Input.GetKeyDown(KeyCode.C))
             {
                 //ZeroTransformRotation(head);
-<<<<<<< HEAD
+
                 StoreOldTransforms(gameObject, m_Camera);
                 m_MouseLook.UpdateMemberRotations(head.transform.localRotation);
-=======
+
                // head.rotation = Quaternion.identity;
->>>>>>> dc614167ae3993851b62e19cac056f84c410432d
+
                 Debug.Log("getkeydown");
             }
 
@@ -148,8 +148,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (isCameraIndependent)
             {
-                // RotateView(head);
-                m_MouseLook.LookRotation(m_Camera.transform);
+                RotateView(head);
+               
             }
 
             else
@@ -165,7 +165,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void ZeroTransformRotation(Transform t)
         {
 
-<<<<<<< HEAD
+
             t.rotation = t.parent.localRotation;
           
         }
@@ -178,9 +178,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             oldCharacterRotation = character.transform.localRotation;
             oldCameraRotation = camera.transform.localRotation;
 
-=======
-            t.rotation = t.parent.rotation;
->>>>>>> dc614167ae3993851b62e19cac056f84c410432d
         }
 
         private void PlayLandingSound()

@@ -69,7 +69,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
-<<<<<<< HEAD
+
         //overloaded
         public void LookRotation(Transform camera)
         {
@@ -96,10 +96,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-
-=======
-        
->>>>>>> dc614167ae3993851b62e19cac056f84c410432d
 
 
         Quaternion ClampRotationAroundXAxis(Quaternion q)
